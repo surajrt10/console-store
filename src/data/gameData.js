@@ -1,8 +1,8 @@
 export const gameData = [
  {
-   id: 1,
+   id: 'gtav',
    name: "Grand Theft Auto V",
-   price: "$39.99",
+   price: 39.99,
    image: "/gta.jpg",
    specs: {
      genre: "Action-adventure",
@@ -12,9 +12,9 @@ export const gameData = [
    },
  },
  {
-   id: 2,
+   id: 'rdr2',
    name: "Red Dead Redemption 2",
-   price: "$60",
+   price: 60,
    image: "/rdr2poster.jpg",
    specs: {
      genre: "Action-adventure",
@@ -24,9 +24,9 @@ export const gameData = [
    },
  },
  {
-   id: 3,
-   name: "Call of Duty: Modern Warfare",
-   price: "$60",
+   id: "codmw",
+   name: "Call of Duty: MW2",
+   price: 60,
    image: "/codmw2.jpg",
    specs: {
      genre: "First-person shooter",
@@ -36,9 +36,9 @@ export const gameData = [
    },
  },
  {
-   id: 4,
+   id: 'tlou2',
    name: "The Last of Us Part II",
-   price: "$45",
+   price: 45,
    image: "/tlou2.jpg",
    specs: {
      genre: "Action-adventure",
@@ -48,9 +48,9 @@ export const gameData = [
    },
  },
  {
-   id: 5,
+   id: 'cyberpunk',
    name: "Cyberpunk 2077",
-   price: "$35",
+   price: 35,
    image: "/cyberpunk.jpg",
    specs: {
      genre: "Action role-playing",
@@ -60,9 +60,9 @@ export const gameData = [
    },
  },
  {
-   id: 6,
+   id: "acv",
    name: "Assassin's Creed Valhalla",
-   price: "$59.99",
+   price: 59.99,
    image: "/acv.jpg",
    specs: {
      genre: "Action role-playing",
@@ -72,9 +72,9 @@ export const gameData = [
    },
  },
  {
-   id: 7,
+   id: 'wdl',
    name: "Watch Dogs: Legion",
-   price: "$60",
+   price: 60,
    image: "/wdl.jpg",
    specs: {
      genre: "Action-adventure",
@@ -84,9 +84,9 @@ export const gameData = [
    },
  },
  {
-   id: 8,
+   id: 'hzd',
    name: "Horizon Zero Dawn",
-   price: "$15",
+   price: 15,
    image: "/hzd.jpg",
    specs: {
      genre: "Action role-playing",

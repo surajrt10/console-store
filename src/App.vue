@@ -25,13 +25,14 @@ export default {
   components: { 
     Topnav
   },
+
   setup() {
     const sessionData = ref({
     });
     const router = useRouter();
     onMounted(()=>{
       sessionData.value = JSON.parse(localStorage.getItem('sessionData'));
-      console.log('sessionData: ',sessionData.value)
+      document.title = "CONSOLE HOUSE";
     })
     return {
       sessionData

@@ -14,93 +14,75 @@
       <v-card
         class="product"
         width="300"
-        v-for="console in consoleData"
-        :key="console.index"
+        v-for="item in consoleData"
+        :key="item.index"
       >
         <v-card-title>
-          <img class="productImage" :src="console.image" alt="console image" />
-          <h3 class="subheading text-center">{{ console.name }}</h3>
+          <img class="productImage" :src="item.image" alt="console image" />
+          <h3 class="subheading text-center">{{ item.name }}</h3>
         </v-card-title>
 
         <v-card-subtitle>
           <p class="text-h6">
-            {{ console.price }}
+            ${{ item.price }}
           </p>
         </v-card-subtitle>
 
-            <v-card-text>
-             Specs: <br/>
-             <ul>
-                <li>CPU : {{console.specs.cpu}}</li>
-                <li>Memory : {{console.specs.memory}}</li>
-                <li>Storage size*: {{console.specs.storage}}</li>
-                <li>Weight: {{console.specs.weight}}</li>
-             </ul>
-            </v-card-text>
+        <v-card-text>
+          Specs: <br />
+          <ul>
+            <li>CPU : {{ item.specs.cpu }}</li>
+            <li>Memory : {{ item.specs.memory }}</li>
+            <li>Storage size*: {{ item.specs.storage }}</li>
+            <li>Weight: {{ item.specs.weight }}</li>
+          </ul>
+        </v-card-text>
         <v-card-actions>
-          <v-btn variant="elevated" color="success" text>Buy Now</v-btn>
+          <v-btn variant="elevated" color="success" @click="addToCart(item)" text
+            >Add to Cart</v-btn
+          >
         </v-card-actions>
-
       </v-card>
     </div>
+    <v-snackbar
+     v-model="addSnackbar"
+     timeout="2000"
+     absolute
+     >
+      Added to cart!
+       <v-btn
+        variant="text"
+        class="float-right"
+        router
+        to="/cart">
+        Go to Cart
+      </v-btn>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
 import { ref } from "@vue/reactivity";
+import { consoleData } from "../data/consoleData.js";
+import { useStore } from "vuex";
 export default {
   name: "Consoles",
   setup() {
     const show = ref(false);
-    const consoleData = ref([
-      {
-        name: "Playstation 4",
-        price: "$300",
-        image: "/ps4.jpg",
-        specs:{
-          cpu: "x86-64 AMD “Jaguar”, 8 cores",
-          memory: "GDDR5 8GB",
-          storage: "500GB, 1TB",
-          weight: "2.1 Kg"
-        }
-      },
-      {
-        name: "Playstation 5",
-        price: "$500",
-        image: "/ps5.jpg",
-        specs:{
-          cpu: "8-core AMD Zen 2 CPU @ 3.5GHz",
-          memory: "GDDR6 16GB",
-          storage: "500GB, 1TB",
-          weight: "4.4 Kg"
-        }
-      },
-      {
-        name: "Xbox Series X",
-        price: "$500",
-        image: "/xbox.png",
-        specs:{
-          cpu: "8-core AMD Zen 2 CPU @ 3.8 GHz",
-          memory: "GDDR6 16GB",
-          storage: "500GB, 1TB",
-          weight: "4.4 Kg"
-        }
-      },
-      {
-        name: "Nintendo Switch",
-        price: "$289",
-        image: "/nintendo.jpg",
-        specs:{
-          cpu: "ARM Cortex-A57 @ 1.02GHz",
-          memory: "LPDDR4 4GB",
-          storage: "32GB, 64GB",
-          weight: "0.88 Kg"
-        }
-      },
-    ]);
+    const addSnackbar = ref(false);
+    const store = useStore();
+    const addToCart = (item) => {
+      console.log("consoleData", item);
+      store.dispatch("addToCart", item);
+      addSnackbar.value = true;
+    };
     return {
       consoleData,
       show,
+      // addToCart: (console) => store.dispatch("addToCart", console),
+      addToCart,
+      addSnackbar,
+      store
     };
   },
 };

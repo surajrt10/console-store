@@ -3,12 +3,11 @@ import Home from "./views/Home.vue";
 import Consoles from "./views/Consoles.vue";
 import Games from "./views/Games.vue";
 import Accessories from "./views/Accessories.vue";
-import Membership from "./views/Membership.vue";
 import Partner from "./views/Partner.vue";
+import Cart from "./components/Cart.vue";
 import Profile from "./views/Profile.vue";
-// import Register from './views/Register.vue'
-// import Login from './views/Login.vue'
 import LoginRegister from './views/LoginRegister.vue'
+import Checkout from './views/Checkout.vue'
 
 const routes = [
   {
@@ -33,14 +32,19 @@ const routes = [
     component: Accessories,
   },
   {
-    path: "/membership",
-    name: "Membership",
-    component: Membership,
-  },
-  {
     path: "/partner",
     name: "Partner",
     component: Partner,
+  },
+  {
+    path: "/cart",
+    name: "Cart",
+    component: Cart,
+  },
+  {
+    path: "/checkout",
+    name: "Checkout",
+    component: Checkout,
   },
   {
     path:'/login',
@@ -52,6 +56,7 @@ const routes = [
     name: "Profile",
     component: Profile,
   },
+
 ];
 
 const router = createRouter({
