@@ -1,5 +1,5 @@
 <template>
-  <div class="profile">
+  <v-sheet class="profile ma-4 rounded">
     <div class="profileDetails">
       <v-list>
         <v-list-item>
@@ -12,7 +12,7 @@
         </v-list-item>
         <v-list-item>
           <v-icon>mdi-phone</v-icon>
-          +1 (555) 123-4567
+          +91 (555) 123-4567
         </v-list-item>
         <v-list-item>
           <v-icon>mdi-email</v-icon>
@@ -39,8 +39,7 @@
         </v-list-item>
       </v-list>
     </div>
-  </div>
-  <div class="membershipPlans mt-4">
+  <div class="membershipPlans ma-4">
     <h3 class="text-white text-h6">Our membership Plans: </h3>
     <v-expansion-panels variant="accordian">
       <v-expansion-panel class="mt-0" v-for="plan in membershipPlans" :key="plan.id">
@@ -59,6 +58,7 @@
       </v-expansion-panel>
     </v-expansion-panels>
   </div>
+  </v-sheet>
 </template>
 
 <script>
@@ -81,7 +81,8 @@ export default {
 <style scoped>
 .profile {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  width: fit-content;
 }
 .profileDetails {
   display: flex;

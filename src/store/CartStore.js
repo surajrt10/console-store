@@ -21,11 +21,14 @@ export const CartStore = {
       }
     },
     removeFromCart(state,payload){
-      console.log('removeFromCart',payload)
       state.cartItems=state.cartItems.filter(item => item.id !== payload.id);
       state.cartItemsCount= state.cartItems.length;
-      console.log('removeFromCart',state.cartItems)
-    }
+    },
+    emptyCart(state){
+      state.cartItems = [];
+      state.cartItemsCount = 0;
+      state.cartTotal = 0;
+    },
   },
   actions:{
     addToCart(context,payload){
@@ -39,6 +42,9 @@ export const CartStore = {
     getCartItems(context){
       console.log('getCartItems',context.state.cartItems)
       return context.state.cartItems
+    },
+    emptyCart(context){
+      context.commit('emptyCart')
     }
   },
   getters:{

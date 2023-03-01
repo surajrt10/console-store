@@ -1,17 +1,17 @@
 <template>
 <v-app>
 
-  <div class="app grey lighten-4">
-    <Topnav :sessionData ="sessionData" />
+    <Topnav :sessionData ="userData" />
+    <v-main>
 
+    <v-container fluid class="pa-0">
      <v-parallax
     src="/background.jpg"
-  >
-    <div class="mainLayout">
+  > 
       <router-view></router-view>
-    </div>
   </v-parallax>
-  </div>
+    </v-container>
+    </v-main>
 </v-app>
 </template>
 
@@ -19,6 +19,7 @@
 import { onMounted, ref } from '@vue/runtime-core';
 import Topnav from './components/Topnav.vue'
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 
 export default {
   name: 'App',
@@ -27,26 +28,23 @@ export default {
   },
 
   setup() {
-    const sessionData = ref({
-    });
+    const store = useStore();
+
+    const userData = ref({});
     const router = useRouter();
     onMounted(()=>{
-      sessionData.value = JSON.parse(localStorage.getItem('sessionData'));
+      userData.value = JSON.parse(localStorage.getItem('sessionData'));
+      if(userData.value){
+        store.dispatch('setUser', userData.value);
+      }
       document.title = "CONSOLE HOUSE";
     })
     return {
-      sessionData
+      userData
     }
   }
 }
 </script>
 
 <style scoped>
-.mainLayout {
-  padding: 10px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 1000px;
-}
 </style>

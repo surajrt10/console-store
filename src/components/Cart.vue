@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="rounded pa-2">
     <p class="text-h6 text-white">Cart</p>
-    <p class="text-subtitle-1 text-white">
+    <p class="text-subtitle-1 text-white ">
       Items Added in your cart will show up here
     </p>
     <p></p>
@@ -9,9 +9,9 @@
       <p class="text-subtitle-1 text-white">
         Cart items : {{ cartItems.length }} &nbsp; Cart Total : {{ cartTotal }}
       </p>
-      <v-row>
-        <v-col class="cartItemColumn" cols="3" v-for="(item, i) in cartItems"  :key="i">
-          <v-card height="235px" width="220px"  class="pa-2 rounded">
+      <v-btn variant="tonal" class="text-white" @click="emptyCart">Empty Cart</v-btn>
+          <div class="d-flex flex-wrap">
+          <v-card height="" v-for="(item, i) in cartItems"  :key="i" width="220px"  class="pa-2 ma-2 rounded">
           <v-chip
             color="red"
             size="small"
@@ -26,20 +26,24 @@
             <v-card-title class="cartItems">
               <v-img :src="item.image" width="130px" height="140px"></v-img>
             </v-card-title>
-            <v-card-subtitle class="text-subtitle-2 text-center text-wrap">
+            <v-card-subtitle class="text-subtitle-2 pb-2 text-center text-wrap">
               <p class="text-subtitle-2 text-center pt-1">
                 {{ item.name }}
               </p>
               <p class="text-subtitle-2 text-center">
                 ${{ item.price }}
               </p>
-              <p class="text-subtitle-2 text-center">
-                Quantity: {{ item.quantity }}
+              <p class="text-h6 text-center">
+                Quantity:
+              </p>
+              <p class="text-h6 text-center">
+               <v-btn icon="mdi-minus" size="small" @click="item.quantity--"></v-btn>
+               {{ item.quantity }}
+              <v-btn icon="mdi-plus" size="small" @click="item.quantity++"></v-btn>
               </p>
             </v-card-subtitle>
           </v-card>
-        </v-col>
-      </v-row>
+          </div>
     </div>
     <p v-if="cartItems.length === 0" class="text-h6 text-white">
           No items in cart
@@ -63,7 +67,7 @@
   </v-container>
 </template>
 <script>
-import { computed, onMounted, ref } from "@vue/runtime-core";
+import { computed, watch } from "@vue/runtime-core";
 import { useStore } from "vuex";
 export default {
   name: "Cart",
@@ -74,14 +78,22 @@ export default {
     //   console.log('cartItems', store.state.cartItems)
     //   console.log('cartItems', cartItems)
     // });
-    onMounted(() =>{
-      console.log('cartTotal', cartTotal);
-    })
+    const cartItems = computed(() => store.getters.cartItems);
+    const removeFromCart = (game) => store.dispatch("removeFromCart", game);
+    const emptyCart = () => store.dispatch("emptyCart");
+    watch(cartItems, (newVal)=>{
+        cartItems.value.map((item) => {
+          if (item.quantity < 1) {
+            removeFromCart(item);
+          }
+        });
+    }, {deep: true})
     return {
       cartItemsCount: computed(() => store.getters.cartItemsCount),
       cartItems: computed(() => store.getters.cartItems),
       cartTotal,
       removeFromCart: (game) => store.dispatch("removeFromCart", game),
+      emptyCart,
     };
   },
 };

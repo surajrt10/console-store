@@ -17,9 +17,9 @@
         v-model="loginData.password"
       ></v-text-field>
 
+          <h6 class="text-center text-red-accent-4">{{errormsg}}</h6>
       <v-row justify="center">
         <v-col cols="4">
-          <!-- <h6>{{errormsg}}</h6> -->
           <v-btn color="success" text @click="saveLoginData">Login</v-btn>
         </v-col>
       </v-row>
@@ -36,19 +36,24 @@ export default {
       username: "",
       password: "",
     });
+    const errormsg = ref("");
     const saveLoginData = () => {
      users.map((user) => {
         if (user.username === loginData.value.username && user.password === loginData.value.password) {
+          errormsg.value = "";
           localStorage.setItem("sessionData", JSON.stringify(user));
           dialog.value = false;
           window.location.href = "/";
+        return;
         }
+       errormsg.value = "Wrong username or password"
      })
     };
     return {
       dialog,
       loginData,
       saveLoginData,
+      errormsg,
     };
   },
 };

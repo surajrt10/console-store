@@ -35,19 +35,19 @@
         <v-text-field
           label="City"
           variant="outlined"
-          placeholder="Enter your address"
+          placeholder="Enter your city"
           v-model="checkoutData.city"
         />
         <v-text-field
           label="State"
           variant="outlined"
-          placeholder="Enter your address"
+          placeholder="Enter your state"
           v-model="checkoutData.state"
         />
         <v-text-field
           label="PIN Code"
           variant="outlined"
-          placeholder="Enter your address"
+          placeholder="Enter your pincode"
           v-model="checkoutData.pincode"
         />
       </v-card-title>
@@ -62,7 +62,7 @@
     </v-card>
     <v-card class="filledAddress" v-else>
       <v-card-title>
-        <div class="serialNo ma-2">1</div>
+        <div class="serialNo">1</div>
         <p class="text-h6 font-weight-bold d-inline">Shipping Address</p>
         <p class="text-subtitle-1 font-weight-medium text-left">
           Full Name: {{ checkoutData.fullName }}

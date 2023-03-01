@@ -18,7 +18,7 @@
             </div>
           </v-card-title>
           <v-card-actions>
-            <v-btn color="primary" text @click="addToCart(accessory)">Add to Cart</v-btn>
+            <v-btn v-if="isUser" color="primary" text @click="addToCart(accessory)">Add to Cart</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -54,6 +54,7 @@ export default {
       store.dispatch("addToCart", accessory);
       addSnackbar.value = true;
     };
+    const isUser = ref(computed(()=>store.getters.isUser).value);
     return {
       cartItemsCount: computed(() => store.getters.cartItemsCount),
       cartItems: computed(() => store.getters.cartItems),
@@ -61,6 +62,7 @@ export default {
       addSnackbar,
       addToCart,
       addToCart,
+      isUser
     };
   },
 };

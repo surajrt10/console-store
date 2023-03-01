@@ -3,7 +3,7 @@ export const gameData = [
    id: 'gtav',
    name: "Grand Theft Auto V",
    price: 39.99,
-   image: "/gta.jpg",
+   image: "/gtav.jpg",
    specs: {
      genre: "Action-adventure",
      developer: "Rockstar North",
@@ -95,4 +95,29 @@ export const gameData = [
      release: "February 28, 2017",
    },
  },
+ {
+    id: 'gta4',
+    name: "Grand Theft Auto IV",
+    price: 20,
+    image: "/gta4.jpg",
+    specs: {
+      genre: "Action-adventure",
+      developer: "Rockstar North",
+      publisher: "Rockstar Games",
+      release: "April 29, 2008",
+    },
+ },
+  {
+    id: 'gowr',
+    name: "God of War: Ragnarok",
+    price: 60,
+    image: "/gowr.jpg",
+    specs: {
+      genre: "Action-adventure",
+      developer: "Santa Monica Studio",
+      publisher: "Sony Interactive Entertainment",
+      release: "November 9, 2022",
+    },
+  },
+
 ];

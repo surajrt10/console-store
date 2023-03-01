@@ -38,7 +38,7 @@
           </ul>
         </v-card-text>
         <v-card-actions>
-          <v-btn variant="elevated" color="success" @click="addToCart(item)" text
+          <v-btn v-if="isUser" variant="elevated" color="success" @click="addToCart(item)" text
             >Add to Cart</v-btn
           >
         </v-card-actions>
@@ -65,6 +65,7 @@
 import { ref } from "@vue/reactivity";
 import { consoleData } from "../data/consoleData.js";
 import { useStore } from "vuex";
+import { computed, onMounted } from '@vue/runtime-core';
 export default {
   name: "Consoles",
   setup() {
@@ -76,13 +77,18 @@ export default {
       store.dispatch("addToCart", item);
       addSnackbar.value = true;
     };
+    const isUser = ref(computed(()=>store.getters.isUser).value);
+    // onMounted(() => {
+    //     // isUser.value = computed(()=>store.getters.isUser).value;
+    //     console.log('isUser', isUser.value);  
+    // });
     return {
       consoleData,
-      show,
       // addToCart: (console) => store.dispatch("addToCart", console),
       addToCart,
       addSnackbar,
-      store
+      store,
+      isUser
     };
   },
 };
@@ -98,6 +104,7 @@ export default {
 .products {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .product {
